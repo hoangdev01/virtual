@@ -23,9 +23,9 @@ for path in os.listdir(f'/content/inputs_{opt.folder_name}/test/cloth/'):
 
 os.chdir('/content/clothes-virtual-try-on')
 os.system(f"rm -rf /content/inputs_{opt.folder_name}/test/cloth/.ipynb_checkpoints")
-os.system("python cloth-mask.py")
+os.system(f"python cloth-mask.py --folder_name {opt.folder_name}")
 os.chdir('/content')
-os.system("python /content/clothes-virtual-try-on/remove_bg.py")
+os.system(f"python /content/clothes-virtual-try-on/remove_bg.py --folder_name {opt.folder_name}")
 os.system(
     f"python3 /content/Self-Correction-Human-Parsing/simple_extractor.py --dataset 'lip' --model-restore '/content/Self-Correction-Human-Parsing/checkpoints/final.pth' --input-dir '/content/inputs_{opt.folder_name}/test/image' --output-dir '/content/inputs_{opt.folder_name}/test/image-parse'")
 os.chdir('/content')

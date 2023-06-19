@@ -3,6 +3,16 @@ import os
 from PIL import Image
 import numpy as np
 
+import argparse
+
+def get_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-b', '--folder_name', type=str, default="", required=True)
+    opt = parser.parse_args()
+    return opt
+
+opt = get_opt()
+
 
 class preprcessInput:
 
@@ -65,9 +75,9 @@ class preprcessInput:
 
 # USAGE OF THE CLASS
 preprocess = preprcessInput()
-for images in os.listdir('/content/inputs/test/image'):
+for images in os.listdir(f"/content/inputs_{opt.folder_name}/test/image"):
   print(images)
   if images[-3:] == 'jpg':
     print('yo')
-    op = preprocess.remove_bg(r'/content/inputs/test/image/'+images)
+    op = preprocess.remove_bg(f"/content/inputs_{opt.folder_name}/test/image/"+images)
     arr = preprocess.transform(768, 1024)

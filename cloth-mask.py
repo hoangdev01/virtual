@@ -6,12 +6,20 @@ from collections import OrderedDict
 import torch
 import torch.nn.functional as F
 import torchvision.transforms as transforms
+import argparse
 
 from networks.u2net import U2NET
 device = 'cuda'
 
-image_dir = '/content/inputs/test/cloth'
-result_dir = '/content/inputs/test/cloth-mask'
+def get_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-b', '--folder_name', type=str, default="", required=True)
+    opt = parser.parse_args()
+    return opt
+
+opt = get_opt()
+image_dir = f'/content/inputs_{opt.folder_name}/test/cloth'
+result_dir = f'/content/inputs_{opt.folder_name}/test/cloth-mask'
 checkpoint_path = 'cloth_segm_u2net_latest.pth'
 
 def load_checkpoint_mgpu(model, checkpoint_path):
