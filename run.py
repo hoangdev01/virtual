@@ -30,9 +30,9 @@ os.system(
     f"python3 /content/Self-Correction-Human-Parsing/simple_extractor.py --dataset 'lip' --model-restore '/content/Self-Correction-Human-Parsing/checkpoints/final.pth' --input-dir '/content/inputs_{opt.folder_name}/test/image' --output-dir '/content/inputs_{opt.folder_name}/test/image-parse'")
 os.chdir('/content')
 os.system(
-    f"cd openpose && ./build/examples/openpose/openpose.bin --image_dir /content/inputs_{opt.folder_name}/test/image/ --write_json /content/inputs_{opt.folder_name}/test/openpose-json/ --display 0 --render_pose 0 --hand")
+    f"cd openpose && ./build/examples/openpose/openpose.bin --image_dir /content/inputs_{opt.folder_name}/test/image/ --write_json /content/inputs_{opt.folder_name}/test/openpose-json/ --display 0 --render_pose 0")
 os.system(
-    f"cd openpose && ./build/examples/openpose/openpose.bin --image_dir /content/inputs_{opt.folder_name}/test/image/ --display 0 --write_images /content/inputs_{opt.folder_name}/test/openpose-img/ --hand --render_pose 1 --disable_blending true")
+    f"cd openpose && ./build/examples/openpose/openpose.bin --image_dir /content/inputs_{opt.folder_name}/test/image/ --display 0 --write_images /content/inputs_{opt.folder_name}/test/openpose-img/ --render_pose 1 --disable_blending true")
 
 model_image = os.listdir(f'/content/inputs_{opt.folder_name}/test/image')
 cloth_image = os.listdir(f'/content/inputs_{opt.folder_name}/test/cloth')
